@@ -1,0 +1,80 @@
+{
+    "default": {
+        "title": "카타르 월드컵",
+        "titleTemplate": "%s 대한민국",
+        "description": "대한민국 16강",
+        "openGraph": {
+            "title": "카타르 월드컵",
+            "description": "대한민국 16강",
+            "type": "website",
+            "locale": "ko_KR",
+            "url": "https://hotpler.com",
+            "site_name": "카타르 월드컵",
+            "images": [
+                {
+                    "url": "/card.png",
+                    "width": 800,
+                    "height": 600,
+                    "alt": "hotpler.com"
+                }
+            ]
+        },
+        "twitter": {
+            "handle": "@nextjs",
+            "site": "@nextjs",
+            "cardType": "summary_large_image"
+        }
+    },
+    "kr": {
+        "title": "카타르 월드컵",
+        "titleTemplate": "%s 대한민국",
+        "description": "대한민국 16강",
+        "openGraph": {
+            "title": "카타르 월드컵",
+            "description": "대한민국 16강",
+            "type": "website",
+            "locale": "ko_KR",
+            "url": "https://hotpler.com",
+            "site_name": "카타르 월드컵",
+            "images": [
+                {
+                    "url": "/card.png",
+                    "width": 800,
+                    "height": 600,
+                    "alt": "hotpler.com"
+                }
+            ]
+        },
+        "twitter": {
+            "handle": "@nextjs",
+            "site": "@nextjs",
+            "cardType": "summary_large_image"
+        }
+    },
+    "en": {
+        "title": "카타르 월드컵",
+        "titleTemplate": "%s 대한민국 16강",
+        "description": "대한민국 16강",
+        "openGraph": {
+            "title": "카타르 월드컵",
+            "description": "대한민국 16강",
+            "type": "website",
+            "locale": "ko_KR",
+            "url": "https://hotpler.com",
+            "site_name": "카타르 월드컵",
+            "images": [
+                {
+                    "url": "/card.png",
+                    "width": 800,
+                    "height": 600,
+                    "alt": "hotpler.com"
+                }
+            ]
+        },
+        "twitter": {
+            "handle": "@nextjs",
+            "site": "@nextjs",
+            "cardType": "summary_large_image"
+        }
+    }
+}

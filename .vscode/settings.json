@@ -1,0 +1,12 @@
+{
+    "css.lint.compatibleVendorPrefixes": "error",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.validate": ["javascript", "typescript"],
+    "css.validate": false,
+    "tailwindCSS.validate": false
+}
+{
+}
