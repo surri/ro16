@@ -8,8 +8,9 @@ import locales from '../pages/[locale]/locales.json'
 const Header: NextPage = ({ router }: any) => {
     const seoData = useMetadata({ page: router?.query?.slug })
 
-    const locale = locales[router?.query?.locale] || locales['en']
+    const locale = locales[router?.query?.locale] || locales['qat']
 
+    console.log({ locale: `/flags/${locale.toLowerCase()}.svg` })
     const { sports } = router?.query || {}
 
     const sportsSEO = {

@@ -24,9 +24,8 @@ export const getStaticProps: GetStaticProps = async ({
 }: any) => {
 
 
-    const locale = locales[localeSlug] || locales['en']
+    const locale = locales[localeSlug] || locales['qat']
 
-    console.log({ locale })
     const dictionary = await api.dictionaries.fetch(locale)
 
     // const board = await api.board.fetch(locale)

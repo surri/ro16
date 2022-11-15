@@ -1,21 +1,21 @@
 {
     "default": {
-        "title": "카타르 월드컵",
+        "title": "World cup Round of 16",
         "titleTemplate": "%s 대한민국",
-        "description": "대한민국 16강",
+        "description": "World cup Round of 16",
         "openGraph": {
-            "title": "카타르 월드컵",
-            "description": "대한민국 16강",
+            "title": "World cup Round of 16",
+            "description": "World cup Round of 16",
             "type": "website",
-            "locale": "ko_KR",
-            "url": "https://hotpler.com",
-            "site_name": "카타르 월드컵",
+            "locale": "en_US",
+            "url": "https://www.roundof16.com",
+            "site_name": "World cup Round of 16",
             "images": [
                 {
-                    "url": "/card.png",
+                    "url": "/qat.svg",
                     "width": 800,
                     "height": 600,
-                    "alt": "hotpler.com"
+                    "alt": "www.roundof16.com"
                 }
             ]
         },
@@ -25,23 +25,49 @@
             "cardType": "summary_large_image"
         }
     },
-    "kr": {
-        "title": "카타르 월드컵",
+    "qat": {
+        "title": "World cup Round of 16",
+        "titleTemplate": "%s qat",
+        "description": "World cup Round of 16",
+        "openGraph": {
+            "title": "World cup Round of 16",
+            "description": "World cup Round of 16",
+            "type": "website",
+            "locale": "en_US",
+            "url": "https://www.roundof16.com",
+            "site_name": "World cup Round of 16",
+            "images": [
+                {
+                    "url": "/qat.svg",
+                    "width": 800,
+                    "height": 600,
+                    "alt": "www.roundof16.com"
+                }
+            ]
+        },
+        "twitter": {
+            "handle": "@nextjs",
+            "site": "@nextjs",
+            "cardType": "summary_large_image"
+        }
+    },
+    "kor": {
+        "title": "월드컵",
         "titleTemplate": "%s 대한민국",
         "description": "대한민국 16강",
         "openGraph": {
-            "title": "카타르 월드컵",
+            "title": "월드컵",
             "description": "대한민국 16강",
             "type": "website",
             "locale": "ko_KR",
-            "url": "https://hotpler.com",
-            "site_name": "카타르 월드컵",
+            "url": "https://www.roundof16.com/ko",
+            "site_name": "월드컵",
             "images": [
                 {
-                    "url": "/card.png",
+                    "url": "/kor.svg",
                     "width": 800,
                     "height": 600,
-                    "alt": "hotpler.com"
+                    "alt": "www.roundof16.com"
                 }
             ]
         },
@@ -52,22 +78,74 @@
         }
     },
     "en": {
-        "title": "카타르 월드컵",
-        "titleTemplate": "%s 대한민국 16강",
-        "description": "대한민국 16강",
+        "title": "World cup Round of 16",
+        "titleTemplate": "%s World cup Round of 16",
+        "description": "World cup Round of 16",
         "openGraph": {
-            "title": "카타르 월드컵",
-            "description": "대한민국 16강",
+            "title": "월드컵",
+            "description": "World cup Round of 16",
             "type": "website",
             "locale": "ko_KR",
-            "url": "https://hotpler.com",
-            "site_name": "카타르 월드컵",
+            "url": "https://www.roundof16.com",
+            "site_name": "월드컵",
             "images": [
                 {
                     "url": "/card.png",
                     "width": 800,
                     "height": 600,
-                    "alt": "hotpler.com"
+                    "alt": "www.roundof16.com"
+                }
+            ]
+        },
+        "twitter": {
+            "handle": "@nextjs",
+            "site": "@nextjs",
+            "cardType": "summary_large_image"
+        }
+    },
+    "uru": {
+        "title": "World cup Round of 16",
+        "titleTemplate": "%s World cup Round of 16",
+        "description": "World cup Round of 16",
+        "openGraph": {
+            "title": "World cup Round of 16",
+            "description": "World cup Round of 16",
+            "type": "website",
+            "locale": "ko_KR",
+            "url": "https://www.roundof16.com",
+            "site_name": "World cup Round of 16",
+            "images": [
+                {
+                    "url": "/uru.svg",
+                    "width": 800,
+                    "height": 600,
+                    "alt": "www.roundof16.com"
+                }
+            ]
+        },
+        "twitter": {
+            "handle": "@nextjs",
+            "site": "@nextjs",
+            "cardType": "summary_large_image"
+        }
+    },
+    "por": {
+        "title": "World cup Round of 16",
+        "titleTemplate": "%s World cup Round of 16",
+        "description": "World cup Round of 16",
+        "openGraph": {
+            "title": "World cup Round of 16",
+            "description": "World cup Round of 16",
+            "type": "website",
+            "locale": "ko_KR",
+            "url": "https://www.roundof16.com",
+            "site_name": "World cup Round of 16",
+            "images": [
+                {
+                    "url": "/uru.svg",
+                    "width": 800,
+                    "height": 600,
+                    "alt": "www.roundof16.com"
                 }
             ]
         },
