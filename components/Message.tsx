@@ -8,10 +8,11 @@ const formatDate = (date) => {
 }
 
 function Message({
-    // id = '',
-    user = '',
+    // userId = '',
+    nickname = '',
     message = '',
     createdAt = null,
+    isMe = false,
 }: any) {
     if (!message) return null
 
@@ -28,7 +29,7 @@ function Message({
             ) : null} */}
             <div className="ml-4">
                 <div className="flex items-center mb-1">
-                    <p className="mr-2 text-xs font-bold">{user}</p>
+                    <p className={`mr-2 text-xs font-bold ${isMe?'text-blue':''}`}>{nickname}</p>
                     {createdAt?.seconds ? (
                         <span className="text-gray-500 text-xs font-semibold">
                             {formatDate(new Date(createdAt.seconds * 1000))}

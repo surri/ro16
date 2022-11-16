@@ -5,8 +5,8 @@ const Footer = () => {
     // const [showNav, setShowNav] = useState(false)
 
     return (
-        <footer className="w-full text-center border-t bg-blue-700 text-white p-4 pin-b">
-            <span className="lg:text-xl"> &copy; Irshad Ali Jan 2020 </span>
+        <footer className="w-full text-center border-t bg-slate-600 text-white p-4 pin-b">
+            <span className="lg:text-xl text-bold">round of 16</span>
         </footer>
     )
 }
