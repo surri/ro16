@@ -10,7 +10,7 @@ export default function Layout({ children }: any) {
                 {/* <Navbar /> */}
                 <div
                     id="content"
-                    className="flex-grow mx-auto p-8 w-full shadow rounded bg-white"
+                    className="flex-grow mx-auto px-8 w-full shadow rounded bg-white"
                 >
                     <main>{children}</main>
                 </div>

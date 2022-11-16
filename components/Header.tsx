@@ -10,7 +10,6 @@ const Header: NextPage = ({ router }: any) => {
 
     const locale = locales[router?.query?.locale] || locales['qat']
 
-    console.log({ locale: `/flags/${locale.toLowerCase()}.svg` })
     const { sports } = router?.query || {}
 
     const sportsSEO = {
