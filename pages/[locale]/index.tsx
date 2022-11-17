@@ -69,16 +69,20 @@ export default function CountryPage({ board, locale, dictionary }: Props) {
     const inputNicknameRef = useRef(null)
 
     const [user, setUser] = useState(null)
-    const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890', 6)
+
+    const getRandomId = () => {
+        const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890', 6)
+        return nanoid()
+    }
 
     useEffect(() => {
         const user = localStorage.getItem('user')
         localStorage.setItem('user', user || JSON.stringify({
             id: uuidv4(),
-            nickname: nanoid(),
+            nickname: getRandomId(),
         }))
         setUser(JSON.parse(user) || null)
-    }, [nanoid])
+    }, [])
 
     useEffect(() => {
         onSnapshot(messagesQuery, (querySnapshot) => {
@@ -88,12 +92,12 @@ export default function CountryPage({ board, locale, dictionary }: Props) {
                     id: doc.id,
                     createdAt: doc.data().createdAt?.toDate().toDateString() || new Date(),
                     ...doc.data(),
-                    isMe: doc.data().userId === user?.id,
+                    isMe: user?.id == doc.data().userId,
                 })
             })
             setMessages(fetchMessage)
         })
-    }, [messagesQuery, user])
+    }, [])
 
     const onChangeNickname = (e) => {
         inputNicknameRef?.current?.focus()
@@ -124,7 +128,7 @@ export default function CountryPage({ board, locale, dictionary }: Props) {
         if(!user.nickname) {
             const newUser = {
                 id: user.id,
-                nickname: nanoid(),
+                nickname: getRandomId(),
             }
             localStorage.setItem('user', JSON.stringify(newUser))
             setUser(newUser || null)
@@ -150,7 +154,6 @@ export default function CountryPage({ board, locale, dictionary }: Props) {
                 <Image
                     alt="World Map"
                     src={map}
-                    layout="fill"
                     objectFit="cover"
                     quality={100}
                 />
@@ -167,7 +170,6 @@ export default function CountryPage({ board, locale, dictionary }: Props) {
                                     width={32}
                                     height={24}
                                     src={`/flags/${locale.toLowerCase()}.svg`}
-                                    layout="fixed"
                                 />
                             </div>
                             <h1 className="text-2xl sm:text-4xl font-bold">{dictionary.subtitle}</h1>

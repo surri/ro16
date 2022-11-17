@@ -20,7 +20,9 @@ import {
     serverTimestamp } from 'firebase/firestore'
 import Message from '@components/Message'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleUp } from '@fortawesome/free-solid-svg-icons'
+import { faCircleUp, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { v4 as uuidv4 } from 'uuid'
+import { customAlphabet } from 'nanoid'
 
 interface Props {
   locale: string
@@ -64,25 +66,57 @@ export default function CountryPage({ board, locale, dictionary }: Props) {
 
     const inputRef = useRef(null)
     const bottomListRef = useRef(null)
+    const inputNicknameRef = useRef(null)
 
+    const [user, setUser] = useState(null)
+
+    const getRandomId = () => {
+        const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890', 6)
+        return nanoid()
+    }
+
+    useEffect(() => {
+        const user = localStorage.getItem('user')
+        localStorage.setItem('user', user || JSON.stringify({
+            id: uuidv4(),
+            nickname: getRandomId(),
+        }))
+        setUser(JSON.parse(user) || null)
+    }, [])
 
     useEffect(() => {
         onSnapshot(messagesQuery, (querySnapshot) => {
-            const ntew = []
+            const fetchMessage = []
             querySnapshot.forEach((doc) => {
-                ntew.push({
+                fetchMessage.push({
                     id: doc.id,
                     createdAt: doc.data().createdAt?.toDate().toDateString() || new Date(),
                     ...doc.data(),
+                    isMe: user?.id == doc.data().userId,
                 })
             })
-            setMessages(ntew)
+            setMessages(fetchMessage)
         })
-    }, [messagesQuery])
+    }, [])
 
-    useEffect(() => {
-        bottomListRef.current?.scrollIntoView()
-    }, [messages])
+    const onChangeNickname = (e) => {
+        inputNicknameRef?.current?.focus()
+        const newNickname = e.target.value || ''
+        const user = localStorage.getItem('user')
+        localStorage.setItem('user', JSON.stringify({
+            id: JSON.parse(user).id,
+            nickname: newNickname,
+        }))
+        setUser({
+            id: JSON.parse(user).id,
+            nickname: newNickname,
+        })
+    }
+
+    const onSubmitNickname = (e) => {
+        e.preventDefault()
+        inputRef?.current?.focus()
+    }
 
     const handleOnChange = (e) => {
         setNewMessage(e.target.value)
@@ -91,16 +125,26 @@ export default function CountryPage({ board, locale, dictionary }: Props) {
     const handleOnSubmit = (e) => {
         e.preventDefault()
 
-        const userId = 'test'
+        if(!user.nickname) {
+            const newUser = {
+                id: user.id,
+                nickname: getRandomId(),
+            }
+            localStorage.setItem('user', JSON.stringify(newUser))
+            setUser(newUser || null)
+            return inputNicknameRef?.current?.focus()
+        }
+
         const trimmedMessage = newMessage.trim()
         if (db) {
             addDoc(messagesRef, {
-                user: userId,
+                userId: user.id,
+                nickname: user.nickname,
                 message: trimmedMessage,
                 createdAt: serverTimestamp(),
             })
+            bottomListRef.current?.scrollIntoView()
             setNewMessage('')
-            // Scroll down to the bottom of the list
         }
     }
 
@@ -110,7 +154,6 @@ export default function CountryPage({ board, locale, dictionary }: Props) {
                 <Image
                     alt="World Map"
                     src={map}
-                    layout="fill"
                     objectFit="cover"
                     quality={100}
                 />
@@ -120,22 +163,18 @@ export default function CountryPage({ board, locale, dictionary }: Props) {
                     <section className="flex flex-1 hidden lg:block" />
                     <section className="flex flex-1 flex-col w-full">
                         <header className="mb-8 flex flex-col items-center justify-center">
-                            <h1 className="text-2xl sm:text-4xl font-bold">{dictionary.title}</h1>
+                            <div className="flex justify-center mb-4">
+                                <h1 className="text-2xl sm:text-4xl font-bold">{dictionary.title}</h1>
+                                <Image
+                                    alt="Country flag"
+                                    width={32}
+                                    height={24}
+                                    src={`/flags/${locale.toLowerCase()}.svg`}
+                                />
+                            </div>
                             <h1 className="text-2xl sm:text-4xl font-bold">{dictionary.subtitle}</h1>
                         </header>
-                        <div className="flex justify-center mb-4">
-                            <Image
-                                alt="Country flag"
-                                width={96}
-                                // width={128}
-                                height={72}
-                                // height={96}
-                                src={`/flags/${locale.toLowerCase()}.svg`}
-                                layout="fixed"
-                            />
-                        </div>
                         <Board board={board} dictionary={dictionary} />
-
                     </section>
                     <section className="flex flex-1 justify-end">
                         <div className="
@@ -166,9 +205,29 @@ export default function CountryPage({ board, locale, dictionary }: Props) {
                                 <div ref={bottomListRef} />
                             </div>
                             <div className="p-4 bg-slate-100 rounded-b-xl">
+                                {user && (
+                                    <form
+                                        onSubmit={onSubmitNickname}
+                                        className="bg-slate-600 rounded-xl px-3 py-1 text-white w-full font-bold inline-flex"
+                                    >
+                                        <input
+                                            ref={inputNicknameRef}
+                                            type="text"
+                                            className="bg-slate-600 outline-none w-full"
+                                            onChange={onChangeNickname}
+                                            value={user.nickname}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={onChangeNickname}
+                                        >
+                                            <FontAwesomeIcon icon={faCircleXmark} className="ml-1 w-4" />
+                                        </button>
+                                    </form>
+                                )}
                                 <form
                                     onSubmit={handleOnSubmit}
-                                    className="flex flex-row bg-gray-200 bg-coolDark-400 rounded-full z-10 max-w-screen-lg mx-auto text-slate-600 shadow-md"
+                                    className="flex flex-row mt-4 bg-gray-200 bg-coolDark-400 rounded-full z-10 max-w-screen-lg mx-auto text-slate-600 shadow-md"
                                 >
                                     <input
                                         ref={inputRef}
@@ -176,7 +235,7 @@ export default function CountryPage({ board, locale, dictionary }: Props) {
                                         value={newMessage}
                                         onChange={handleOnChange}
                                         placeholder={dictionary.greet}
-                                        className="flex-1 bg-transparent outline-none px-4"
+                                        className="flex-1 bg-transparent outline-none px-4 w-full"
                                     />
                                     <button
                                         type="submit"

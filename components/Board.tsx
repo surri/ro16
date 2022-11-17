@@ -30,7 +30,6 @@ const Board = ({
                                         height={18}
                                         // height={96}
                                         src={`/flags/${b.Team.Abbreviation.toLowerCase()}.svg`}
-                                        layout="fixed"
                                     />
                                     <label className="text-xs font-bold">{b.Team.Abbreviation}</label>
                                 </td>

@@ -117,6 +117,7 @@
                 "prop": "parens-new-line"
             }
         ],
+        "react-hooks/exhaustive-deps": "never",
         "@typescript-eslint/no-explicit-any": ["off"]
     }
 }
